@@ -8,6 +8,8 @@ backend:
     uploadMedia: "chore(cms): upload {{path}}"
     deleteMedia: "chore(cms): delete {{path}}"
 
+local_backend: true
+
 media_folder: "public/images"
 public_folder: "/images"
 
