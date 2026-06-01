@@ -16,6 +16,7 @@ const { title, description } = Astro.props;
     <title>{title ? `${title} | SBDMC` : "SBDMC - Subic Bay Gateway Park"}</title>
     <meta name="description" content={description || "Subic Bay Gateway Park - A premier business and industrial park in the Subic Bay Freeport Zone, Philippines."} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />
@@ -34,6 +35,17 @@ const { title, description } = Astro.props;
           easing: "ease-out-cubic",
         });
       });
+    </script>
+    <script is:inline>
+      if (window.netlifyIdentity) {
+        netlifyIdentity.on("init", function (user) {
+          if (!user) {
+            netlifyIdentity.on("login", function () {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
     </script>
   </body>
 </html>
