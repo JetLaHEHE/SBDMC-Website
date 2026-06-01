@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Gallery">
+  <section class="page-header">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8" data-aos="fade-up">
+      <div class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">Gallery</div>
+      <h1 class="mb-4 text-5xl font-extrabold md:text-6xl">Photo Gallery</h1>
+      <p class="text-lg text-white/70">Explore Subic Bay Gateway Park through our photos</p>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center" data-aos="fade-up">
+        <p class="mb-6 text-gray-600">Visit our Flickr album for the full collection of photos.</p>
+        <a href="https://www.flickr.com/photos/138132292@N06/albums" target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.523 4.477 10 10 10s10-4.477 10-10zM8.5 14.5a2.5 2.5 0 110-5 2.5 2.5 0 010 5zm7 0a2.5 2.5 0 110-5 2.5 2.5 0 010 5z"/></svg>
+          View on Flickr
+        </a>
+      </div>
+
+      <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up">
+          <div class="aspect-[4/3] bg-gradient-to-br from-primary-200 to-primary-100"></div>
+        </div>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="aspect-[3/4] bg-gradient-to-br from-accent-200 to-accent-100"></div>
+        </div>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="aspect-[4/3] bg-gradient-to-br from-primary-300 to-primary-200"></div>
+        </div>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up">
+          <div class="aspect-square bg-gradient-to-br from-accent-300 to-accent-200"></div>
+        </div>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="100">
+          <div class="aspect-[4/3] bg-gradient-to-br from-primary-200 to-primary-100"></div>
+        </div>
+        <div class="mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-gray-200 transition-all hover:shadow-xl" data-aos="fade-up" data-aos-delay="200">
+          <div class="aspect-[3/4] bg-gradient-to-br from-accent-200 to-accent-100"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

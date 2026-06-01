@@ -1,0 +1,82 @@
+---
+import Layout from "../layouts/Layout.astro";
+import faqData from "../data/faq.json";
+const faqCategories = faqData.categories;
+---
+
+<Layout title="FAQ">
+  <section class="page-header">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="absolute bottom-0 left-0 h-64 w-64 -translate-x-1/4 translate-y-1/4 rounded-full bg-accent-500/20 blur-3xl"></div>
+    <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8" data-aos="fade-up">
+      <div class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">FAQ</div>
+      <h1 class="mb-4 text-5xl font-extrabold md:text-6xl">Frequently Asked Questions</h1>
+      <p class="text-lg text-white/70">Find answers to common questions about SBDMC and SBGP</p>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 flex flex-wrap gap-2" data-aos="fade-up">
+        {faqCategories.map((cat, ci) => (
+          <button class="faq-tab rounded-xl border border-gray-200 px-5 py-2.5 text-sm font-medium text-gray-600 transition-all hover:border-primary-300 hover:text-primary-600" data-category={ci}>
+            {cat.category}
+          </button>
+        ))}
+      </div>
+
+      {faqCategories.map((cat, ci) => (
+        <div class={`faq-group ${ci === 0 ? "" : "hidden"}`} data-category={ci}>
+          <div class="space-y-4">
+            {cat.items.map((item, ii) => (
+              <div class="rounded-2xl border border-gray-100 bg-white shadow-sm transition-all hover:shadow-md" data-aos="fade-up" data-aos-delay={ii * 50}>
+                <button class="faq-toggle flex w-full items-center justify-between px-6 py-5 text-left">
+                  <span class="pr-4 font-semibold text-gray-900">{item.q}</span>
+                  <svg class="faq-icon h-5 w-5 shrink-0 text-gray-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                </button>
+                <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                  <div class="border-t border-gray-100 px-6 pb-6 pt-4">
+                    <p class="text-gray-600 leading-relaxed">{item.a}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.querySelectorAll(".faq-toggle").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const answer = btn.nextElementSibling;
+      const icon = btn.querySelector(".faq-icon");
+      const isOpen = !answer.classList.contains("max-h-0");
+      document.querySelectorAll(".faq-answer").forEach((el) => {
+        el.classList.add("max-h-0");
+        el.previousElementSibling.querySelector(".faq-icon")?.classList.remove("rotate-45");
+      });
+      if (!isOpen) {
+        answer.classList.remove("max-h-0");
+        answer.classList.add("max-h-96");
+        icon.classList.add("rotate-45");
+      }
+    });
+  });
+
+  document.querySelectorAll(".faq-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".faq-tab").forEach((t) => {
+        t.classList.remove("border-primary-300", "text-primary-600", "bg-primary-50");
+        t.classList.add("border-gray-200", "text-gray-600");
+      });
+      tab.classList.add("border-primary-300", "text-primary-600", "bg-primary-50");
+      tab.classList.remove("border-gray-200", "text-gray-600");
+      const ci = tab.dataset.category;
+      document.querySelectorAll(".faq-group").forEach((g) => g.classList.add("hidden"));
+      document.querySelector(`.faq-group[data-category="${ci}"]`)?.classList.remove("hidden");
+    });
+  });
+</script>

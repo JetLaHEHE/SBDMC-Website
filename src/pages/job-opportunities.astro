@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import jobs from "../data/jobs.json";
+---
+
+<Layout title="Job Opportunities">
+  <section class="page-header">
+    <div class="absolute inset-0 bg-grid opacity-30"></div>
+    <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8" data-aos="fade-up">
+      <div class="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-medium text-white/70 backdrop-blur-sm">Careers</div>
+      <h1 class="mb-4 text-5xl font-extrabold md:text-6xl">Job Opportunities</h1>
+      <p class="text-lg text-white/70">Career opportunities within SBDMC and SBGP locators</p>
+    </div>
+  </section>
+
+  <section class="py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+      <p class="mb-12 text-center text-lg text-gray-600" data-aos="fade-up">{jobs.intro}</p>
+
+      {jobs.listings.map((job) => (
+        <div class="mb-6 rounded-2xl border border-gray-100 bg-white p-6 shadow-sm transition-all hover:shadow-lg" data-aos="fade-up">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex items-start gap-4">
+              <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-white shadow-lg">
+                <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+              </div>
+              <div>
+                <div class={`mb-1 inline-flex rounded-full px-3 py-0.5 text-xs font-semibold ${job.status === "open" ? "bg-accent-100 text-accent-600" : "bg-gray-100 text-gray-500"}`}>{job.status === "open" ? "Open" : "Closed"}</div>
+                <h3 class="text-xl font-bold text-gray-900">{job.title}</h3>
+                <p class="text-sm text-gray-500">{job.company} &middot; {job.type} &middot; {job.location}</p>
+                <p class="mt-2 text-sm text-gray-600">{job.description}</p>
+              </div>
+            </div>
+            {job.status === "open" && (
+              <a href="/contact" class="shrink-0 rounded-xl bg-primary-500 px-6 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-primary-600 hover:-translate-y-0.5">Apply Now</a>
+            )}
+          </div>
+        </div>
+      ))}
+
+      <div class="mt-12 rounded-2xl bg-gradient-to-br from-primary-500 to-accent-500 p-8 text-center text-white shadow-xl" data-aos="fade-up">
+        <h3 class="mb-3 text-2xl font-bold">{jobs.ctaTitle}</h3>
+        <p class="mb-6 text-white/80">{jobs.ctaText}</p>
+        <a href={`mailto:${jobs.ctaEmail}`} class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 font-semibold text-primary-600 transition-all hover:bg-gray-50 hover:-translate-y-0.5">Email Your Resume</a>
+      </div>
+    </div>
+  </section>
+</Layout>

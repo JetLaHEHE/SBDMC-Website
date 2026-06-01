@@ -1,0 +1,22 @@
+---
+const { variant = "wave", color = "fill-gray-50" } = Astro.props;
+---
+
+{
+  variant === "wave" && (
+    <div class="relative -mt-1 h-auto w-full leading-none">
+      <svg class={`w-full ${color}`} viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 40C240 100 480 100 720 60C960 20 1200 0 1440 40V100H0V40Z" />
+      </svg>
+    </div>
+  )
+}
+{
+  variant === "angle" && (
+    <div class="relative -mt-1 h-auto w-full leading-none">
+      <svg class={`w-full ${color}`} viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 80L1440 0V80H0Z" />
+      </svg>
+    </div>
+  )
+}
